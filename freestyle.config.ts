@@ -1,7 +1,5 @@
 import { defineConfig } from "freestyle-sh";
-import dotenv from "dotenv";
 
-dotenv.config();
 
 export default defineConfig({
   dev: {
@@ -9,7 +7,7 @@ export default defineConfig({
     proxy: "http://localhost:3000",
   },
   deploy: {
-
+    
     web: {
       entryPoint: ".next/standalone/entry.js",
     },

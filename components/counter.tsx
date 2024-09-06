@@ -4,10 +4,13 @@ import { useCloud } from "freestyle-sh";
 import { useState } from "react";
 import { CounterCS } from "@/cloudstate/counter";
 import { useCloudQuery } from "freestyle-sh/react";
+// import { useCloudQuery } from "freestyle-sh/react";
 
-export default function Counter(props: { count: number,name: string }) {
+export default function Counter(props: { count: number }) {
+  // const [count, setCount] = useState(props.count);
   const counter = useCloud<typeof CounterCS>("counter");
-  const { data: myData } = useCloudQuery(counter.getCount);
+  const { data: count } = useCloudQuery(counter.getCount);
+  // const { data: countData } = useCloudQuery(counter.getCount);
 
   const increment = async () => {
     await counter.increment();
@@ -26,9 +29,7 @@ export default function Counter(props: { count: number,name: string }) {
         Decrement
       </button>
 
-      <p className="my-4">Count: <b>{myData?.count ?? props.count}</b></p>
-      <p className="my-4">Name: <b>{myData?.name ??props.name}</b></p>
-
+      <p className="my-4">Count: <b>{count ?? props.count}</b></p>
       <button
         onClick={increment}
         className="p-4 rounded-xl bg-gray-700 transition-all hover:bg-gray-800"

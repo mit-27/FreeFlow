@@ -1,4 +1,4 @@
-import { cloudstate, invalidate, useCloud, useLocal } from "freestyle-sh";
+import { cloudstate, invalidate, useCloud } from "freestyle-sh";
 
 @cloudstate
 export class EntityTemplate {
@@ -56,6 +56,7 @@ export class EntityData {
 
     constructor(data: Record<string, string>) {
         // this.data = data;
+        this.dataList.set(this.id, data);
     }
 
     getData() {
@@ -82,16 +83,3 @@ export class App {
     entityDataManagerList: Map<string, EntityDataManager> = new Map<string, EntityDataManager>();
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
