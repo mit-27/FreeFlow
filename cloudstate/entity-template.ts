@@ -77,9 +77,22 @@ export class EntityDataManager {
 }
 
 @cloudstate
-export class App {
+export class DataBaseApp {
     static id = "freeflow" as const;
     entityTemplateManagerList: Map<string, EntityTemplateManager> = new Map<string, EntityTemplateManager>();
     entityDataManagerList: Map<string, EntityDataManager> = new Map<string, EntityDataManager>();
+
+    async getEntityDataManagerList(userID: string) {
+        if (userID) {
+            return {
+                loggedInUserID: userID
+            }
+        }
+        else {
+            return {
+                loggedInUserID: null
+            }
+        }
+    }
 
 }
